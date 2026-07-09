@@ -1,0 +1,14 @@
+{
+  "name": "MIRA — Míralo antes de que exista",
+  "short_name": "MIRA",
+  "description": "Venue-to-vision cinema studio. Camina el venue, dirige en vivo.",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "icons": [
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
