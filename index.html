@@ -78,9 +78,59 @@
   .btn.gold { background: var(--accent-dim); border-color: rgba(201,168,76,0.4); color: var(--accent); }
   .btn.ghost { background: transparent; }
 
+  /* ---------- view tabs ---------- */
+  .vtabs { display: flex; gap: 4px; background: var(--panel); border: 1px solid var(--line); padding: 4px; border-radius: 100px; }
+  .vtab { padding: 8px 15px; border-radius: 100px; font-size: 12px; font-weight: 700; color: var(--muted); transition: all 0.3s var(--ease); }
+  .vtab.on { background: var(--accent); color: var(--on-accent); }
+
+  /* ---------- Timeline view (run of show) ---------- */
+  .tlview { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
+  .tlview.on { display: flex; }
+  .tlprev { width: min(660px, 90%); aspect-ratio: 16/10; border-radius: 14px; background: var(--panel) center/cover; border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 24px; position: relative; overflow: hidden; }
+  .tlprev .tcap { position: absolute; left: 14px; bottom: 12px; font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.2em; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,0.9); }
+  .tlprev .tempty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--muted-2); font-size: 13px; text-align: center; padding: 20px; }
+  .tlprev .tempty b { color: var(--accent); }
+  .rostrack { display: flex; gap: 8px; width: min(760px, 96%); }
+  .roslot { flex: 1; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); padding: 9px 10px; transition: all 0.3s var(--ease); text-align: left; }
+  .roslot.on { border-color: rgba(176,138,46,0.5); background: linear-gradient(180deg, var(--accent-dim), var(--panel)); transform: translateY(-3px); box-shadow: 0 10px 26px rgba(60,50,20,0.14); }
+  .roslot .st { font-family: "JetBrains Mono", monospace; font-size: 9px; color: var(--accent); }
+  .roslot .sn { font-size: 11.5px; font-weight: 700; margin-top: 3px; white-space: nowrap; overflow: hidden; }
+  .roslot .sth { height: 32px; margin-top: 7px; border-radius: 6px; background: var(--black-2) center/cover; border: 1px solid var(--line); }
+  .roslot .sem { height: 32px; margin-top: 7px; border-radius: 6px; border: 1.5px dashed var(--line-2); }
+  .rosbase { height: 3px; margin-top: 12px; border-radius: 2px; width: min(760px, 96%); background: linear-gradient(90deg, rgba(176,138,46,0.25), var(--accent) 55%, rgba(176,138,46,0.25)); }
+  .tlgo { margin-top: 20px; }
+
+  /* ---------- Board view (mood references) ---------- */
+  .boardview { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
+  .boardview.on { display: flex; }
+  .bgrid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 720px; }
+  .btile { width: 150px; height: 104px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel) center/cover; position: relative; box-shadow: 0 4px 16px rgba(60,50,20,0.1); animation: cardrise 0.5s var(--ease) backwards; }
+  .btile .bx { position: absolute; top: -9px; right: -9px; width: 26px; height: 26px; border-radius: 50%; background: rgba(200,60,50,0.92); color: #fff; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+  .btile.add { border: 1.5px dashed var(--line-2); background: none; display: flex; align-items: center; justify-content: center; color: var(--muted-2); font-size: 24px; box-shadow: none; }
+  .bnote { margin-top: 22px; max-width: 480px; text-align: center; font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .bnote b { color: var(--accent); }
+
+  /* ---------- phases in the filmstrip ---------- */
+  .phblock { display: flex; flex-direction: column; gap: 7px; flex: none; }
+  .phhead { display: flex; align-items: center; gap: 7px; font-family: "JetBrains Mono", monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); padding: 0 2px; }
+  .phhead b { color: var(--accent); font-weight: 600; }
+  .phrow { display: flex; gap: 10px; align-items: center; }
+  .phadd { flex: none; width: 84px; height: 74px; border-radius: 12px; border: 1.5px dashed var(--line-2); color: var(--muted-2); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 10px; font-weight: 600; transition: all 0.25s var(--ease); }
+  .phadd:active { transform: scale(0.93); border-color: var(--accent); color: var(--accent); }
+  .phadd .pe { font-size: 16px; }
+
+  /* phase editor rows (in Proyecto sheet) */
+  .phedit { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .phedit input { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; font-size: 13px; outline: none; }
+  .phedit .pt { width: 64px; font-family: "JetBrains Mono", monospace; font-size: 11.5px; text-align: center; }
+  .phedit .pn2 { flex: 1; min-width: 0; }
+  .phedit .pemo2 { width: 46px; text-align: center; }
+  .phedit button { width: 32px; height: 32px; border-radius: 50%; color: var(--muted); font-size: 13px; flex: none; }
+  .phedit .del2 { color: #C0473B; }
+
   /* ---------- Filmstrip (bottom, like a cinema studio timeline) ---------- */
   .scenes {
-    display: flex; gap: 14px; align-items: center;
+    display: flex; gap: 18px; align-items: flex-start;
     padding: 14px 18px calc(var(--sab) + 14px); overflow-x: auto; overflow-y: hidden;
     border-top: 1px solid var(--line);
     background: linear-gradient(180deg, rgba(244,242,237,0.6), var(--black) 40%);
@@ -437,6 +487,11 @@
   <div class="top">
     <div class="wordmark">MIR<b>A</b></div>
     <button class="tagline" id="projTitle" style="text-align:left;">Míralo antes de que exista</button>
+    <div class="vtabs" id="vtabs">
+      <button class="vtab on" data-view="rec">Recorrido</button>
+      <button class="vtab" data-view="tl">Timeline</button>
+      <button class="vtab" data-view="board">Board</button>
+    </div>
     <button class="btn ghost" id="btnSystems"><svg class="ic sm" viewBox="0 0 24 24"><path d="M12 3.5l8.5 8.5-8.5 8.5L3.5 12 12 3.5z"/></svg>Systems</button>
     <button class="btn ghost" id="btnPresent" title="Presentar"><svg class="ic sm fill" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5z"/></svg></button>
     <button class="btn ghost" id="btnSettings" title="Ajustes"><svg class="ic sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.2 2.2M16.6 16.6l2.2 2.2M18.8 5.2l-2.2 2.2M7.4 16.6l-2.2 2.2"/></svg></button>
@@ -503,6 +558,23 @@
       </div>
     </div>
 
+    <!-- Timeline (run of show) -->
+    <div class="tlview" id="tlView">
+      <div class="tlprev" id="tlPrev">
+        <div class="tempty" id="tlEmpty">＋<div>Esta fase aún no tiene escena.<br/><b>Tócala abajo en el Recorrido y captúrala.</b></div></div>
+        <div class="tcap" id="tlCap"></div>
+      </div>
+      <div class="rostrack" id="rosTrack"></div>
+      <div class="rosbase"></div>
+      <button class="btn tlgo" id="tlGo">Abrir esta fase en el Recorrido →</button>
+    </div>
+
+    <!-- Board (references) -->
+    <div class="boardview" id="boardView">
+      <div class="bgrid" id="bGrid"></div>
+      <div class="bnote">Estas referencias <b>viajan con tu foto en cada generación</b> — el modelo hereda tu paleta, materiales y luz (sin copiar su arquitectura). Pega aquí tu Pinterest, eventos pasados, texturas de la marca.</div>
+    </div>
+
     <div class="fabs hidden" id="fabs">
       <button class="fab sec" id="btnPrompt"><svg class="ic sm" viewBox="0 0 24 24" style="display:inline-block;vertical-align:-3px;margin-right:7px;"><path d="M3.5 9.5h17V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19V9.5z"/><path d="M3.5 9.5l2-4.5h4l-2 4.5M11.5 9.5l2-4.5h4l-2 4.5"/></svg>Dirigir la toma</button>
       <button class="fab" id="btnGen">✦ Generar</button>
@@ -518,6 +590,7 @@
 <!-- hidden inputs -->
 <input type="file" accept="image/*" capture="environment" id="inCam" hidden />
 <input type="file" accept="image/*" id="inLib" hidden />
+<input type="file" accept="image/*" multiple id="inBoard" hidden />
 
 <!-- Prompt sheet -->
 <div class="scrim" id="scrim"></div>
@@ -597,6 +670,36 @@
       <button class="btn" id="btnLang">ES / EN</button>
       <button class="btn" id="btnPng">Exportar PNG</button>
       <button class="btn danger" id="btnDelScene">Borrar escena</button>
+    </div>
+  </div>
+</div>
+
+<!-- Proyecto sheet -->
+<div class="sheet" id="sheetProject">
+  <div class="grab"></div>
+  <div class="body">
+    <h2>El proyecto</h2>
+    <div class="sub">Qué evento es, para qué existe, y las fases de su recorrido — todo editable, todo tuyo.</div>
+    <div class="field"><label>Nombre del evento / venue</label><input type="text" id="prName" placeholder="Ej. Gala Forbes · Bodega Industrial" /></div>
+    <div class="field">
+      <label>Tipo de evento</label>
+      <div class="chips" id="prType">
+        <button class="chip" data-v="gala">🥂 Gala</button>
+        <button class="chip" data-v="summit">🎤 Summit</button>
+        <button class="chip" data-v="activacion">🔥 Activación</button>
+        <button class="chip" data-v="cena">🍷 Cena</button>
+      </div>
+    </div>
+    <div class="hintline">Cambiar el tipo propone un recorrido nuevo — tus escenas no se borran, solo se re-acomodan.</div>
+    <div class="field"><label>El delta — tu invitado llega…</label><textarea id="prIn" placeholder="Escéptico, cansado de eventos iguales…"></textarea></div>
+    <div class="field"><label>✦ …y se tiene que ir</label><textarea id="prOut" placeholder="Sintiendo que perteneció a algo irrepetible…"></textarea></div>
+    <div class="field">
+      <label>Las fases del recorrido — hora · nombre · emoción</label>
+      <div id="phList"></div>
+      <button class="chip" id="phAdd" style="margin-top:4px;">＋ Agregar fase</button>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="prSave">Guardar proyecto</button>
     </div>
   </div>
 </div>
@@ -758,9 +861,22 @@
   function idb() {
     return new Promise((res, rej) => {
       if (DB.db) return res(DB.db);
-      const rq = indexedDB.open("mira", 1);
-      rq.onupgradeneeded = () => rq.result.createObjectStore("scenes", { keyPath: "id" });
+      const rq = indexedDB.open("mira", 2);
+      rq.onupgradeneeded = () => {
+        const db = rq.result;
+        if (!db.objectStoreNames.contains("scenes")) db.createObjectStore("scenes", { keyPath: "id" });
+        if (!db.objectStoreNames.contains("board")) db.createObjectStore("board", { keyPath: "id" });
+      };
       rq.onsuccess = () => { DB.db = rq.result; res(DB.db); };
+      rq.onerror = () => rej(rq.error);
+    });
+  }
+  async function dbStore(store, op, arg) {
+    const db = await idb();
+    return new Promise((res, rej) => {
+      const tx = db.transaction(store, op === "getAll" ? "readonly" : "readwrite");
+      const rq = tx.objectStore(store)[op](arg);
+      rq.onsuccess = () => res(rq.result);
       rq.onerror = () => rej(rq.error);
     });
   }
@@ -876,9 +992,41 @@
   function saveSystems() { localStorage.setItem("mira-systems", JSON.stringify(systems)); }
   let systems = loadSystems();
 
+  /* ---------- project — the event being designed ---------- */
+  const PHASE_PRESETS = {
+    gala:      [["17:00","Llegada","😮"],["17:30","Check-in","🤍"],["18:00","Cocktail","🥂"],["20:30","Momento principal","🔥"],["23:00","Despedida","✨"]],
+    summit:    [["08:30","Llegada","😮"],["09:00","Registro","🤍"],["10:00","Keynote","🔥"],["13:00","Networking","🥂"],["18:00","Cierre","✨"]],
+    activacion:[["11:00","Descubrimiento","😮"],["11:30","Experiencia","🔥"],["12:30","Foto-momento","📸"],["13:00","Regalo / salida","✨"]],
+    cena:      [["19:00","Recepción","🥂"],["20:00","Mesa","🍽"],["21:30","Momento del chef","🔥"],["23:00","Sobremesa","✨"]]
+  };
+  function defaultProject(type = "gala") {
+    return {
+      name: (localStorage.getItem("mira-project") || "").trim(),
+      type,
+      deltaIn: "", deltaOut: "",
+      phases: PHASE_PRESETS[type].map(([t, n, emo], i) => ({ id: "ph-" + type + "-" + i, t, n, emo }))
+    };
+  }
+  function loadProject() {
+    try {
+      const p = JSON.parse(localStorage.getItem("mira-project2"));
+      if (p && Array.isArray(p.phases) && p.phases.length) return p;
+    } catch (e) {}
+    return defaultProject();
+  }
+  function saveProject() { localStorage.setItem("mira-project2", JSON.stringify(project)); localStorage.setItem("mira-project", project.name); }
+  let project = loadProject();
+  function heroPhaseId() {
+    const hero = project.phases.find(p => p.emo === "🔥") || project.phases[Math.floor(project.phases.length / 2)];
+    return hero ? hero.id : null;
+  }
+  let boardImgs = [];        // [{id, blob, url}]
+
   /* ---------- state ---------- */
   let scenes = [];           // metadata list (with blobs)
   let cur = null;            // current scene object
+  let view = "rec";          // rec | tl | board
+  let pendingPhase = null;   // phase to assign to the next capture
   let tool = "pen", color = "#C9A84C", size = 4;
   let pencilOnly = false, penSeen = false;
   let lang = localStorage.getItem("mira-lang") || "en";
@@ -928,19 +1076,69 @@
     renderVersions();
   }
 
-  /* ---------- scene strip ---------- */
+  /* ---------- the journey strip — scenes live inside event phases ---------- */
   const strip = $("#sceneStrip");
+  function phaseOf(s) { return project.phases.find(p => p.id === s.phaseId); }
+  function scenesInOrder() {
+    const inPhases = project.phases.flatMap(ph => scenes.filter(s => s.phaseId === ph.id));
+    return inPhases.concat(scenes.filter(s => !phaseOf(s)));
+  }
   function renderStrip() {
-    $$(".scene", strip).forEach(el => el.remove());
-    scenes.forEach((s, i) => {
+    strip.innerHTML = "";
+    let n = 0;
+    const sceneEl = s => {
+      n++;
       const el = document.createElement("button");
       el.className = "scene" + (cur && s.id === cur.id ? " active" : "");
-      el.innerHTML = `<span class="num">ESC ${String(i + 1).padStart(2, "0")}${hasVision(s) ? " ✦" : ""}</span>`;
+      el.innerHTML = `<span class="num">ESC ${String(n).padStart(2, "0")}${hasVision(s) ? " ✦" : ""}</span>`;
       if (s.thumbUrl) el.style.backgroundImage = `url(${s.thumbUrl})`;
-      el.onclick = () => openScene(s.id);
-      strip.appendChild(el);
+      el.onclick = () => { setView("rec"); openScene(s.id); };
+      return el;
+    };
+    project.phases.forEach(ph => {
+      const block = document.createElement("div");
+      block.className = "phblock";
+      block.innerHTML = `<div class="phhead"><b>${esc(ph.t)}</b> ${esc(ph.n.toUpperCase())} ${ph.emo || ""}</div>`;
+      const row = document.createElement("div");
+      row.className = "phrow";
+      scenes.filter(s => s.phaseId === ph.id).forEach(s => row.appendChild(sceneEl(s)));
+      const add = document.createElement("button");
+      add.className = "phadd";
+      add.innerHTML = `<span class="pe">＋</span>${row.children.length ? "otra" : "diseñar"}`;
+      add.onclick = () => { pendingPhase = ph.id; inCam.click(); };
+      row.appendChild(add);
+      block.appendChild(row);
+      strip.appendChild(block);
     });
+    const loose = scenes.filter(s => !phaseOf(s));
+    if (loose.length) {
+      const block = document.createElement("div");
+      block.className = "phblock";
+      block.innerHTML = `<div class="phhead">SIN FASE</div>`;
+      const row = document.createElement("div");
+      row.className = "phrow";
+      loose.forEach(s => row.appendChild(sceneEl(s)));
+      block.appendChild(row);
+      strip.appendChild(block);
+    }
   }
+
+  /* ---------- views: Recorrido · Timeline · Board ---------- */
+  function setView(v) {
+    view = v;
+    $$(".vtab").forEach(t => t.classList.toggle("on", t.dataset.view === v));
+    const rec = v === "rec";
+    $("#tlView").classList.toggle("on", v === "tl");
+    $("#boardView").classList.toggle("on", v === "board");
+    frame.style.visibility = rec && cur ? "visible" : "hidden";
+    dock.classList.toggle("hidden", !rec || !cur || mode === "vision");
+    fabs.classList.toggle("hidden", !rec || !cur);
+    verStrip.classList.toggle("hidden", !rec || !cur || !hasVision(cur));
+    emptyEl.style.display = rec && !cur ? "flex" : "none";
+    if (v === "tl") renderTl();
+    if (v === "board") renderBoard();
+  }
+  $$(".vtab").forEach(t => t.onclick = () => setView(t.dataset.view));
 
   /* ---------- open / layout ---------- */
   async function openScene(id) {
@@ -1336,8 +1534,10 @@
       id: uid(), order: scenes.length ? Math.max(...scenes.map(x => x.order)) + 1 : 1,
       createdAt: Date.now(), blob, strokes: [], notes: "", visions: [], objects: [], voiceTags: [],
       systemId: systems[0].id, shot: "wide establishing shot", time: "night, event in full swing",
-      fmt: "image", aspect: "", cam: "slow cinematic dolly-in"
+      fmt: "image", aspect: "", cam: "slow cinematic dolly-in",
+      phaseId: pendingPhase || (cur && cur.phaseId) || heroPhaseId()
     };
+    pendingPhase = null;
     s.thumbUrl = URL.createObjectURL(blob);
     scenes.push(s);
     await persist(s);
@@ -1371,7 +1571,7 @@
 
   /* ---------- prompt sheet ---------- */
   const scrim = $("#scrim");
-  const sheets = { prompt: $("#sheetPrompt"), systems: $("#sheetSystems"), sysEdit: $("#sheetSysEdit"), settings: $("#sheetSettings"), export: $("#sheetExport"), objects: $("#sheetObjects"), layers: $("#sheetLayers") };
+  const sheets = { prompt: $("#sheetPrompt"), systems: $("#sheetSystems"), sysEdit: $("#sheetSysEdit"), settings: $("#sheetSettings"), export: $("#sheetExport"), objects: $("#sheetObjects"), layers: $("#sheetLayers"), project: $("#sheetProject") };
   function openSheet(name) {
     Object.values(sheets).forEach(s => s.classList.remove("open"));
     sheets[name].classList.add("open");
@@ -1483,7 +1683,7 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}arquitectura que se deforma, rostros di
 BASE PLATE: the attached venue photo is a LOCKED plate. Every architectural line — columns, beams, windows, ceiling, floor seams, wall openings — keeps its exact position, count and proportion. You may only ADD event elements and RELIGHT the space; never rebuild, extend or reproportion the room. Camera position and lens perspective stay identical to the photo.
 The hand-drawn annotations mark exact placement${notes ? ": " + notes : " of the key elements."}
 ${placedSections(true)}CONCEPT — ${sy.name}: ${sy.concept}
-GUESTS: ${sy.audience} Natural candid poses, mid-conversation, believable density — the room breathing, not packed, never empty.
+${project.deltaIn || project.deltaOut ? `INTENT (the event's delta): guests arrive ${project.deltaIn || "neutral"} — they must leave ${project.deltaOut || "transformed"}. Engineer the light, density and energy of this moment${phaseOf(cur) ? ` («${phaseOf(cur).n}», ${phaseOf(cur).t})` : ""} to drive that shift.\n` : ""}GUESTS: ${sy.audience} Natural candid poses, mid-conversation, believable density — the room breathing, not packed, never empty.
 ART DIRECTION: ${sy.mood}
 ${sy.materials ? "MATERIALS & TEXTURE (tactile, close-detail believable): " + sy.materials + "\n" : ""}${sy.lighting ? "LIGHTING DESIGN: " + sy.lighting + " Motivated sources only, gentle haze catching the beams, no flat ambient fill.\n" : ""}ACCENT COLOR ${sy.color} — sparingly, only on the hero elements.
 BRANDING: keep branded surfaces (backdrops, screens, podiums) elegant but ABSTRACT — never render readable logos or lettering; real logos are added later in post.
@@ -1496,7 +1696,7 @@ AVOID: ${sy.avoid ? sy.avoid + " " : ""}CGI plastic look, oversaturation, moved/
 PLATE BASE: la foto adjunta del venue es un plate BLOQUEADO. Cada línea arquitectónica — columnas, vigas, ventanas, techo, juntas del piso, vanos — mantiene su posición, cantidad y proporción exactas. Solo puedes AGREGAR elementos de evento y RE-ILUMINAR; nunca reconstruir, extender o reproporcionar el espacio. La posición de cámara y la perspectiva quedan idénticas a la foto.
 Las anotaciones dibujadas a mano marcan la ubicación exacta${notes ? ": " + notes : " de los elementos clave."}
 ${placedSections(false)}CONCEPTO — ${sy.name}: ${sy.concept}
-INVITADOS: ${sy.audience} Poses naturales, a media conversación, densidad creíble — la sala respira, ni vacía ni saturada.
+${project.deltaIn || project.deltaOut ? `INTENCIÓN (el delta del evento): el invitado llega ${project.deltaIn || "neutral"} — se tiene que ir ${project.deltaOut || "transformado"}. Diseña luz, densidad y energía de este momento${phaseOf(cur) ? ` («${phaseOf(cur).n}», ${phaseOf(cur).t})` : ""} para provocar ese cambio.\n` : ""}INVITADOS: ${sy.audience} Poses naturales, a media conversación, densidad creíble — la sala respira, ni vacía ni saturada.
 DIRECCIÓN DE ARTE: ${sy.mood}
 ${sy.materials ? "MATERIALES Y TEXTURA (táctil, creíble en detalle cercano): " + sy.materials + "\n" : ""}${sy.lighting ? "DISEÑO DE ILUMINACIÓN: " + sy.lighting + " Solo fuentes motivadas, haze sutil atrapando los beams, nada de luz ambiental plana.\n" : ""}COLOR DE ACENTO ${sy.color} — con moderación, solo en los elementos héroe.
 MARCA: superficies de marca (backdrops, pantallas, podios) elegantes pero ABSTRACTAS — nunca renderizar logos ni letras legibles; el logo real se agrega después en post.
@@ -1584,14 +1784,20 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
       const plate = await flatten(cur);                 // photo + ink + objects + voice tags
       const small = await downscale(plate, 1568);       // keep the API payload light
       const b64 = await blobToB64(small);
+      const parts = [{ inline_data: { mime_type: "image/jpeg", data: b64 } }];
+      // board references travel with every generation (style DNA, not architecture)
+      const refs = boardImgs.slice(0, 3);
+      for (const r of refs) {
+        parts.push({ inline_data: { mime_type: "image/jpeg", data: await blobToB64(await downscale(r.blob, 768)) } });
+      }
+      parts.push({ text: (refs.length
+        ? `The FIRST image is the venue plate to edit. The other ${refs.length} image(s) are STYLE REFERENCES from the project board: inherit their palette, materials and light mood — do NOT copy their architecture or objects.\n`
+        : "") + prompt });
       const res = await fetch(GEMINI_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-goog-api-key": key },
         body: JSON.stringify({
-          contents: [{ parts: [
-            { inline_data: { mime_type: "image/jpeg", data: b64 } },
-            { text: prompt }
-          ]}],
+          contents: [{ parts }],
           generationConfig: Object.assign(
             { responseModalities: ["TEXT", "IMAGE"] },
             cur.aspect ? { imageConfig: { aspectRatio: cur.aspect } } : {}
@@ -1672,20 +1878,163 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
   }
   $("#btnSettings").onclick = openSettings;
   function refreshProjTitle() {
-    const p = (localStorage.getItem("mira-project") || "").trim();
+    const p = (project.name || "").trim();
     const el = $("#projTitle");
     el.textContent = p || "Míralo antes de que exista";
     el.style.color = p ? "var(--white)" : "";
     el.style.fontWeight = p ? "600" : "";
   }
-  $("#projTitle").onclick = openSettings;
+  $("#projTitle").onclick = openProject;
   refreshProjTitle();
   $("#btnSaveSettings").onclick = () => {
     localStorage.setItem("mira-gemini-key", $("#setGeminiKey").value.trim());
-    localStorage.setItem("mira-project", $("#setProject").value.trim());
+    project.name = $("#setProject").value.trim();
+    saveProject();
     refreshProjTitle();
     closeSheets();
     toast("Ajustes <b>guardados</b>");
+  };
+
+  /* ---------- Proyecto — name, delta, editable phases ---------- */
+  let draftPhases = [];
+  function openProject() {
+    $("#prName").value = project.name || "";
+    $$("#prType .chip").forEach(c => c.classList.toggle("on", c.dataset.v === project.type));
+    $("#prIn").value = project.deltaIn || "";
+    $("#prOut").value = project.deltaOut || "";
+    draftPhases = project.phases.map(p => ({ ...p }));
+    renderPhEdit();
+    openSheet("project");
+  }
+  function renderPhEdit() {
+    const box = $("#phList");
+    box.innerHTML = "";
+    draftPhases.forEach((p, i) => {
+      const row = document.createElement("div");
+      row.className = "phedit";
+      row.innerHTML = `<input class="pt" value="${esc(p.t)}" /><input class="pn2" value="${esc(p.n)}" /><input class="pemo2" value="${esc(p.emo || "")}" />
+        <button class="up2">↑</button><button class="dn2">↓</button><button class="del2">✕</button>`;
+      row.querySelector(".pt").oninput = e => p.t = e.target.value;
+      row.querySelector(".pn2").oninput = e => p.n = e.target.value;
+      row.querySelector(".pemo2").oninput = e => p.emo = e.target.value;
+      row.querySelector(".up2").onclick = () => { if (i > 0) { draftPhases.splice(i - 1, 0, draftPhases.splice(i, 1)[0]); renderPhEdit(); } };
+      row.querySelector(".dn2").onclick = () => { if (i < draftPhases.length - 1) { draftPhases.splice(i + 1, 0, draftPhases.splice(i, 1)[0]); renderPhEdit(); } };
+      row.querySelector(".del2").onclick = () => {
+        if (draftPhases.length <= 1) { toast("El recorrido necesita al menos una fase"); return; }
+        draftPhases.splice(i, 1); renderPhEdit();
+      };
+      box.appendChild(row);
+    });
+  }
+  $("#phAdd").onclick = () => { draftPhases.push({ id: uid(), t: "00:00", n: "Nueva fase", emo: "✨" }); renderPhEdit(); };
+  $("#prType").addEventListener("click", e => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    $$("#prType .chip").forEach(x => x.classList.toggle("on", x === c));
+    draftPhases = PHASE_PRESETS[c.dataset.v].map(([t, n, emo], i) => ({ id: "ph-" + c.dataset.v + "-" + i, t, n, emo }));
+    renderPhEdit();
+    toast("Recorrido de <b>" + esc(c.textContent.trim()) + "</b> propuesto — edítalo a tu gusto");
+  });
+  $("#prSave").onclick = async () => {
+    project.name = $("#prName").value.trim();
+    const t = $("#prType .chip.on");
+    if (t) project.type = t.dataset.v;
+    project.deltaIn = $("#prIn").value.trim();
+    project.deltaOut = $("#prOut").value.trim();
+    project.phases = draftPhases.filter(p => p.n.trim());
+    // re-home scenes whose phase disappeared
+    for (const s of scenes) {
+      if (!project.phases.find(p => p.id === s.phaseId)) { s.phaseId = heroPhaseId(); await persist(s); }
+    }
+    saveProject();
+    refreshProjTitle();
+    renderStrip();
+    closeSheets();
+    toast("Proyecto <b>guardado</b> — el recorrido es tuyo");
+  };
+
+  /* ---------- Timeline — the run of show ---------- */
+  let tlSel = 0;
+  function phaseThumb(ph) {
+    const s = scenes.find(x => x.phaseId === ph.id);
+    if (!s) return null;
+    if (hasVision(s)) {
+      const v = s.visions[s.visions.length - 1];
+      if (!v.url) v.url = URL.createObjectURL(v.blob);
+      return { url: v.url, vision: true, scene: s };
+    }
+    return { url: s.thumbUrl, vision: false, scene: s };
+  }
+  function renderTl() {
+    const tr = $("#rosTrack");
+    tr.innerHTML = "";
+    tlSel = Math.min(tlSel, project.phases.length - 1);
+    project.phases.forEach((ph, i) => {
+      const th = phaseThumb(ph);
+      const el = document.createElement("button");
+      el.className = "roslot" + (i === tlSel ? " on" : "");
+      el.innerHTML = `<div class="st">${esc(ph.t)}</div><div class="sn">${ph.emo || ""} ${esc(ph.n)}</div>` +
+        (th ? `<div class="sth" style="background-image:url(${th.url})"></div>` : `<div class="sem"></div>`);
+      el.onclick = () => { tlSel = i; renderTl(); };
+      tr.appendChild(el);
+    });
+    const ph = project.phases[tlSel];
+    const th = ph ? phaseThumb(ph) : null;
+    const prev = $("#tlPrev");
+    if (th) {
+      prev.style.backgroundImage = `url(${th.url})`;
+      $("#tlEmpty").style.display = "none";
+      $("#tlCap").textContent = `${ph.t} · ${ph.n.toUpperCase()}${th.vision ? " · ✦ VISIÓN" : " · PLATE"}`;
+    } else {
+      prev.style.backgroundImage = "";
+      $("#tlEmpty").style.display = "flex";
+      $("#tlCap").textContent = ph ? `${ph.t} · ${ph.n.toUpperCase()}` : "";
+    }
+  }
+  $("#tlGo").onclick = () => {
+    const ph = project.phases[tlSel];
+    const s = scenes.find(x => x.phaseId === ph.id);
+    if (s) { setView("rec"); openScene(s.id); }
+    else { pendingPhase = ph.id; setView("rec"); inCam.click(); }
+  };
+
+  /* ---------- Board — style references that travel with every generation ---------- */
+  function renderBoard() {
+    const g = $("#bGrid");
+    g.innerHTML = "";
+    boardImgs.forEach((b, i) => {
+      const t = document.createElement("div");
+      t.className = "btile";
+      t.style.backgroundImage = `url(${b.url})`;
+      t.style.animationDelay = (i * 50) + "ms";
+      const x = document.createElement("button");
+      x.className = "bx"; x.textContent = "✕";
+      x.onclick = async () => {
+        await dbStore("board", "delete", b.id).catch(() => {});
+        URL.revokeObjectURL(b.url);
+        boardImgs = boardImgs.filter(z => z !== b);
+        renderBoard();
+      };
+      t.appendChild(x);
+      g.appendChild(t);
+    });
+    const add = document.createElement("button");
+    add.className = "btile add";
+    add.textContent = "＋";
+    add.onclick = () => $("#inBoard").click();
+    g.appendChild(add);
+  }
+  $("#inBoard").onchange = async e => {
+    const files = [...e.target.files].slice(0, 12);
+    e.target.value = "";
+    for (const f of files) {
+      const blob = await downscale(f, 1280);
+      const rec = { id: uid(), blob, at: Date.now() };
+      await dbStore("board", "put", rec).catch(() => {});
+      rec.url = URL.createObjectURL(blob);
+      boardImgs.push(rec);
+    }
+    renderBoard();
+    toast(`<b>${files.length}</b> referencia(s) al board — viajarán en cada generación`);
   };
 
   /* ---------- workspace backup — the life insurance ---------- */
@@ -1696,7 +2045,8 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
   async function exportWorkspace() {
     if (!scenes.length && !systems.length) { toast("Nada que respaldar aún"); return; }
     toast("💾 Empaquetando tu workspace…");
-    const out = { app: "mira", v: 4, at: Date.now(), project: localStorage.getItem("mira-project") || "", lang, systems, scenes: [] };
+    const out = { app: "mira", v: 8, at: Date.now(), project: project.name, project2: project, lang, systems, scenes: [],
+      board: await Promise.all(boardImgs.map(async b => ({ id: b.id, at: b.at, img: await blobToDataUrl(b.blob) }))) };
     for (const s of scenes) {
       const { blob, imgUrl, thumbUrl, _flatUrl, visions, ...rest } = s;
       out.scenes.push({
@@ -1725,7 +2075,18 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
       await persist(s);
     }
     if (Array.isArray(j.systems) && j.systems.length) { systems = j.systems; saveSystems(); }
-    if (j.project != null) localStorage.setItem("mira-project", j.project);
+    if (j.project2 && Array.isArray(j.project2.phases)) { project = j.project2; saveProject(); refreshProjTitle(); }
+    else if (j.project != null) { project.name = j.project; saveProject(); refreshProjTitle(); }
+    if (Array.isArray(j.board)) {
+      for (const b of boardImgs) { await dbStore("board", "delete", b.id).catch(() => {}); }
+      boardImgs = [];
+      for (const b of j.board) {
+        const rec = { id: b.id || uid(), at: b.at, blob: dataUrlToBlob(b.img) };
+        await dbStore("board", "put", { id: rec.id, at: rec.at, blob: rec.blob }).catch(() => {});
+        rec.url = URL.createObjectURL(rec.blob);
+        boardImgs.push(rec);
+      }
+    }
     renderStrip();
     if (scenes.length) openScene(scenes[scenes.length - 1].id);
     toast("✅ Workspace <b>restaurado</b>");
@@ -1931,14 +2292,16 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
       const fecha = new Date().toLocaleDateString("es-MX", { day: "numeric", month: "long", year: "numeric" });
       const sy0 = systems.find(s => s.id === scenes[0].systemId) || systems[0];
       let slidesHtml = "";
-      for (let i = 0; i < scenes.length; i++) {
-        const s = scenes[i];
+      const ordered = scenesInOrder();
+      for (let i = 0; i < ordered.length; i++) {
+        const s = ordered[i];
         const sy = systems.find(x => x.id === s.systemId) || systems[0];
+        const ph = phaseOf(s);
         const plate = await blobToDataUrl(await downscale(await flatten(s), 1800));
         const vis = hasVision(s) ? await blobToDataUrl(s.visions[s.visions.length - 1].blob) : null;
         slidesHtml += `
 <section class="slide">
-  <div class="kicker">ESC ${String(i + 1).padStart(2, "0")} · ${esc(sy.name)}</div>
+  <div class="kicker">${ph ? esc(ph.t) + " · " + esc(ph.n.toUpperCase()) : "ESC " + String(i + 1).padStart(2, "0")} · ${esc(sy.name)}</div>
   <div class="viz"><img src="${vis || plate}" alt="" />${vis ? `<div class="plate-tag"><img src="${plate}" alt="" /><span>El espacio real</span></div>` : ""}</div>
   ${s.notes ? `<p class="note">${esc(s.notes)}</p>` : ""}
 </section>`;
@@ -2018,19 +2381,22 @@ ${slidesHtml}
     return s._flatUrl;
   }
   async function showP(i) {
-    if (!scenes.length) return;
+    const list = scenesInOrder();
+    if (!list.length) return;
     exitReveal();
-    pIdx = (i + scenes.length) % scenes.length;
-    const s = scenes[pIdx];
+    pIdx = (i + list.length) % list.length;
+    const s = list[pIdx];
     pImg.src = await presentUrl(s);
-    const proj = (localStorage.getItem("mira-project") || "").trim();
-    $("#pInfo").textContent = (proj ? proj + " · " : "") + "ESC " + String(pIdx + 1).padStart(2, "0") + (hasVision(s) ? " · ✦ Visión" : " · Plate");
-    $("#pDots").innerHTML = scenes.map((_, j) => `<i class="${j === pIdx ? "on" : ""}"></i>`).join("");
+    const ph = phaseOf(s);
+    const proj = (project.name || "").trim();
+    $("#pInfo").textContent = (proj ? proj + " · " : "") + (ph ? `${ph.t} · ${ph.n.toUpperCase()}` : "ESC " + String(pIdx + 1).padStart(2, "0")) + (hasVision(s) ? " · ✦ VISIÓN" : " · PLATE");
+    $("#pDots").innerHTML = list.map((_, j) => `<i class="${j === pIdx ? "on" : ""}"></i>`).join("");
   }
   $("#btnPresent").onclick = async () => {
     if (!scenes.length) { toast("Aún no hay escenas que presentar"); return; }
     presenter.classList.add("open");
-    await showP(cur ? scenes.indexOf(cur) : 0);
+    const list = scenesInOrder();
+    await showP(cur ? Math.max(0, list.indexOf(cur)) : 0);
   };
   $("#pClose").onclick = e => { e.stopPropagation(); exitReveal(); presenter.classList.remove("open"); };
   presenter.addEventListener("click", e => {
@@ -2156,7 +2522,10 @@ ${slidesHtml}
         if (!s.cam) s.cam = "slow cinematic dolly-in";
         if (!s.objects) s.objects = [];
         if (!s.voiceTags) s.voiceTags = [];
+        if (!s.phaseId || !project.phases.find(p => p.id === s.phaseId)) s.phaseId = heroPhaseId();
       });
+      boardImgs = (await dbStore("board", "getAll").catch(() => [])) || [];
+      boardImgs.forEach(b => b.url = URL.createObjectURL(b.blob));
       renderStrip();
       if (scenes.length) openScene(scenes[scenes.length - 1].id);
       setTimeout(processQueue, 1500);
