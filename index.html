@@ -625,6 +625,15 @@
     </div>
 
     <div class="field">
+      <label>Cerebro</label>
+      <div class="chips" id="smartChips">
+        <button class="chip on" data-v="1">🧠 Director inteligente</button>
+        <button class="chip" data-v="0">📐 Plantilla fija</button>
+      </div>
+    </div>
+    <div class="hintline">El Director mira tu foto, lee tu dictado crudo (ignora el relleno tipo «¿me escuchas?»), y compone el prompt como lo haría un director de foto. Usa tu misma key (~gratis).</div>
+
+    <div class="field">
       <label>Formato</label>
       <div class="chips" id="fmtChips">
         <button class="chip on" data-v="image">📷 Imagen</button>
@@ -664,6 +673,7 @@
     </details>
 
     <div class="actions">
+      <button class="btn primary" id="btnGenSheet">✦ Generar</button>
       <button class="btn" id="btnSerieCob">🎬 Cobertura ×3</button>
       <button class="btn" id="btnSerieArc">🌗 Arco de la noche ×3</button>
       <button class="btn" id="btnCopy">Copiar prompt</button>
@@ -688,6 +698,7 @@
         <button class="chip" data-v="summit">🎤 Summit</button>
         <button class="chip" data-v="activacion">🔥 Activación</button>
         <button class="chip" data-v="cena">🍷 Cena</button>
+        <button class="chip" data-v="cine">🎬 Cine / Contenido</button>
       </div>
     </div>
     <div class="hintline">Cambiar el tipo propone un recorrido nuevo — tus escenas no se borran, solo se re-acomodan.</div>
@@ -740,6 +751,11 @@
       <button class="syscard" id="btnExpWa">
         <span class="dot" style="background:#38D97C"></span>
         <span class="info"><span class="name">📱 WhatsApp</span><br/><span class="desc">Collage vertical de la escena actual (espacio → visión, con marco editorial). Directo al chat.</span></span>
+        <span class="edit">›</span>
+      </button>
+      <button class="syscard" id="btnExpShare">
+        <span class="dot" style="background:#4CC3E8"></span>
+        <span class="info"><span class="name">📤 Compartir visión actual</span><br/><span class="desc">Share sheet nativo — directo a Instagram, TikTok, Mail, donde sea.</span></span>
         <span class="edit">›</span>
       </button>
       <button class="syscard" id="btnExpPngs">
@@ -997,8 +1013,10 @@
     gala:      [["17:00","Llegada","😮"],["17:30","Check-in","🤍"],["18:00","Cocktail","🥂"],["20:30","Momento principal","🔥"],["23:00","Despedida","✨"]],
     summit:    [["08:30","Llegada","😮"],["09:00","Registro","🤍"],["10:00","Keynote","🔥"],["13:00","Networking","🥂"],["18:00","Cierre","✨"]],
     activacion:[["11:00","Descubrimiento","😮"],["11:30","Experiencia","🔥"],["12:30","Foto-momento","📸"],["13:00","Regalo / salida","✨"]],
-    cena:      [["19:00","Recepción","🥂"],["20:00","Mesa","🍽"],["21:30","Momento del chef","🔥"],["23:00","Sobremesa","✨"]]
+    cena:      [["19:00","Recepción","🥂"],["20:00","Mesa","🍽"],["21:30","Momento del chef","🔥"],["23:00","Sobremesa","✨"]],
+    cine:      [["ESC 1","Apertura","🎬"],["ESC 2","Desarrollo","🌀"],["ESC 3","Giro","⚡"],["ESC 4","Clímax","🔥"],["ESC 5","Cierre","🌘"]]
   };
+  function isCine() { return project.type === "cine" || (cur && cur.systemId === "sys-cine"); }
   function defaultProject(type = "gala") {
     return {
       name: (localStorage.getItem("mira-project") || "").trim(),
@@ -1583,7 +1601,12 @@
   }
   scrim.onclick = closeSheets;
 
-  fab.onclick = () => { renderSysChips(); composePrompt(); openSheet("prompt"); };
+  fab.onclick = () => {
+    renderSysChips();
+    $$("#smartChips .chip").forEach(x => x.classList.toggle("on", x.dataset.v === (smartOn() ? "1" : "0")));
+    composePrompt();
+    openSheet("prompt");
+  };
 
   function setChip(sel, val) {
     $$(sel + " .chip").forEach(c => c.classList.toggle("on", c.dataset.v === val));
@@ -1605,6 +1628,7 @@
     $("#camField").style.display = video ? "" : "none";
     $("#videoHint").style.display = video ? "" : "none";
     $("#btnGen").style.display = video ? "none" : "";
+    $("#btnGenSheet").style.display = video ? "none" : "";
     $("#btnSerieCob").style.display = video ? "none" : "";
     $("#btnSerieArc").style.display = video ? "none" : "";
   }
@@ -1669,13 +1693,30 @@ ART DIRECTION: ${sy.mood}
 ${sy.lighting ? "LIGHTING: " + sy.lighting + "\n" : ""}Guests in natural candid motion, fabric and hair moving with physics, glass catching light, gentle atmospheric haze. Accent color ${sy.color} only on hero elements.
 AVOID: ${sy.avoid ? sy.avoid + " " : ""}morphing architecture, warped faces, sudden cuts, text, watermarks.`;
       }
-      return `Toma cinematográfica 4K de evento — debe sentirse como footage documental real de un evento de lujo, no motion graphics.
+      return `Toma cinematográfica 4K — debe sentirse como footage real de cine, no motion graphics.
 FRAME INICIAL: la imagen adjunta (la visión del venue) — conserva exactamente su arquitectura, paleta y luz.
 CÁMARA: ${cur.cam}, ${cur.shot}, ${lensFor(cur.shot, false)}, ${cur.time}.
 ${notes ? "ACCIÓN EN CUADRO: " + notes + "\n" : ""}CONCEPTO — ${sy.name}: ${sy.concept}
 DIRECCIÓN DE ARTE: ${sy.mood}
 ${sy.lighting ? "ILUMINACIÓN: " + sy.lighting + "\n" : ""}Invitados en movimiento natural y espontáneo, telas y cabello con física real, vidrio atrapando la luz, haze atmosférico sutil. Color de acento ${sy.color} solo en elementos héroe.
 EVITAR: ${sy.avoid ? sy.avoid + " " : ""}arquitectura que se deforma, rostros distorsionados, cortes bruscos, textos, marcas de agua.`;
+    }
+    if (isCine()) {
+      const tags = (cur.tagsHidden ? [] : (cur.voiceTags || []));
+      if (l === "en") {
+        return `Photorealistic cinematic film still — a frame from a movie, VFX executed at film grade. NOT an event, NO party guests, NO furniture unless explicitly asked.
+PLATE LOCKED: the attached location photo. Every real element — architecture, horizon, vegetation, sky structure — keeps its exact position and proportion. Only ADD what the direction asks and relight accordingly. Camera stays identical to the photo.
+THE SCENE${notes ? ": " + notes : " is marked by the sketch annotations."}
+${tags.length ? "SPOKEN DIRECTION (interpret intent, ignore conversational filler; positions matter):\n" + tags.map(t => `- «${t.text}» — ${gpos(t.x, t.y, true)}`).join("\n") + "\n" : ""}${placedSections(true)}LOOK — ${sy.name}: ${sy.mood}
+${sy.lighting ? "LIGHT: " + sy.lighting + "\n" : ""}CAMERA: ${cur.shot}, ${lensFor(cur.shot, true)}, ${cur.time}. Filmic contrast, true blacks, atmospheric depth.
+AVOID: ${sy.avoid ? sy.avoid + " " : ""}event furniture, party guests, rendered text or lettering of any kind, watermarks, warped geometry.`;
+      }
+      return `Fotograma cinematográfico fotorrealista — un cuadro de película, VFX a nivel de cine. NO es un evento, SIN invitados ni mobiliario salvo que se pida.
+PLATE BLOQUEADO: la foto adjunta de la locación. Cada elemento real — arquitectura, horizonte, vegetación, estructura del cielo — mantiene posición y proporción exactas. Solo AGREGA lo que pide la dirección y re-ilumina en consecuencia.
+LA ESCENA${notes ? ": " + notes : " está marcada por las anotaciones."}
+${tags.length ? "DIRECCIÓN HABLADA (interpreta la intención, ignora el relleno conversacional):\n" + tags.map(t => `- «${t.text}» — ${gpos(t.x, t.y, false)}`).join("\n") + "\n" : ""}${placedSections(false)}LOOK — ${sy.name}: ${sy.mood}
+${sy.lighting ? "LUZ: " + sy.lighting + "\n" : ""}CÁMARA: ${cur.shot}, ${lensFor(cur.shot, false)}, ${cur.time}. Contraste fílmico, negros verdaderos, profundidad atmosférica.
+EVITAR: ${sy.avoid ? sy.avoid + " " : ""}mobiliario de evento, invitados, texto o letras renderizadas de cualquier tipo, marcas de agua, geometría deformada.`;
     }
     if (l === "en") {
       p =
@@ -1737,6 +1778,44 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
     return new Blob([arr], { type: mime || "image/png" });
   }
   const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent";
+  const GEMINI_TEXT_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
+  const smartOn = () => localStorage.getItem("mira-smart") !== "0";
+
+  /* El Director — the intelligent layer: looks at the plate, reads the creator's
+     raw spoken/sketched direction, extracts INTENT (ignoring conversational
+     filler) and composes the ideal prompt. Falls back to the template engine. */
+  async function directorCompose(key, plateB64) {
+    const sy = systems.find(s => s.id === cur.systemId) || systems[0];
+    const ph = phaseOf(cur);
+    const tags = (cur.tagsHidden ? [] : (cur.voiceTags || []));
+    const els = (cur.objects || []).filter(o => !o.hidden && OBJ_BY_ID[o.type]);
+    const brief =
+`MODE: ${isCine() ? "FILM SCENE (a movie frame; no event furniture or party guests unless asked)" : "EVENT DESIGN previsualization (editorial event photography)"}
+CREATIVE SYSTEM: ${sy.name} — ${sy.concept} | mood: ${sy.mood} | materials: ${sy.materials || "-"} | light: ${sy.lighting || "-"} | avoid: ${sy.avoid || "-"} | accent: ${sy.color}
+${project.deltaIn || project.deltaOut ? `EVENT DELTA: guests arrive ${project.deltaIn || "-"} → must leave ${project.deltaOut || "-"}` : ""}
+${ph ? `MOMENT: ${ph.t} · ${ph.n}` : ""}
+TYPED NOTES: ${(cur.notes || "-")}
+SPOKEN WHILE SKETCHING (raw dictation — extract intent, DISCARD conversational filler like "can you hear me"):
+${tags.length ? tags.map(t => `- «${t.text}» pinned at ${gpos(t.x, t.y, true)}`).join("\n") : "-"}
+PLACED SCHEMATIC STAMPS: ${els.length ? els.map(o => `${OBJ_BY_ID[o.type].en}${o.label ? ` («${o.label}»)` : ""} at ${gpos(o.x, o.y, true)}`).join("; ") : "-"}
+SHOT: ${cur.shot}, ${lensFor(cur.shot, true)}, ${cur.time}.`;
+    const instruction =
+`You are MIRA's director of photography — the intelligent layer between a creator sketching on his iPad and an image-editing model. Look at the attached location photo (his sketch lines and white schematic stamps mark placement). Read his raw direction below. Then write ONE image-editing prompt, in English, for a model that will EDIT this exact photo.
+Hard rules for the prompt you write: the photo is a LOCKED plate (all real architecture/geometry/horizon keeps exact position, count, proportion; camera identical); build the creator's intent INTO the space; photorealistic, filmic; NEVER render any text, lettering or logos; do not mention the sketch lines or stamps as objects to draw — they are placement instructions to replace with real elements.
+Return ONLY the prompt text, no preamble.
+
+${brief}`;
+    const res = await fetch(GEMINI_TEXT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+      body: JSON.stringify({ contents: [{ parts: [ { inline_data: { mime_type: "image/jpeg", data: plateB64 } }, { text: instruction } ] }] })
+    });
+    if (!res.ok) throw new Error("director HTTP " + res.status);
+    const j = await res.json();
+    const t = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join(" ").trim();
+    if (!t || t.length < 60) throw new Error("director sin respuesta útil");
+    return t;
+  }
   /* offline queue — capture never waits for signal */
   const loadQueue = () => { try { return JSON.parse(localStorage.getItem("mira-genqueue")) || []; } catch (e) { return []; } };
   const saveQueue = q => localStorage.setItem("mira-genqueue", JSON.stringify(q));
@@ -1779,11 +1858,21 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
     try {
       if (opts.shot) cur.shot = opts.shot;
       if (opts.time) cur.time = opts.time;
-      const prompt = buildPrompt("en") + (opts.extra ? "\n" + opts.extra : "");
-      cur.shot = keepShot; cur.time = keepTime;
-      const plate = await flatten(cur);                 // photo + ink + objects + voice tags
+      let prompt = buildPrompt("en") + (opts.extra ? "\n" + opts.extra : "");
+      const plate = await flatten(cur, { noTags: true }); // photo + ink + objects (tags travel as text)
       const small = await downscale(plate, 1568);       // keep the API payload light
       const b64 = await blobToB64(small);
+      if (smartOn()) {
+        try {
+          btn.innerHTML = '<span class="spin"></span>🧠 Director…';
+          prompt = (await directorCompose(key, b64)) +
+            (opts.extra ? "\n" + opts.extra : "") +
+            "\nABSOLUTE: the photo is a locked plate — no geometry changes; never render text, lettering or logos.";
+          $("#promptOut").textContent = prompt;
+          btn.innerHTML = '<span class="spin"></span>Generando…';
+        } catch (e) { /* template fallback already in `prompt` */ }
+      }
+      cur.shot = keepShot; cur.time = keepTime;
       const parts = [{ inline_data: { mime_type: "image/jpeg", data: b64 } }];
       // board references travel with every generation (style DNA, not architecture)
       const refs = boardImgs.slice(0, 3);
@@ -1837,6 +1926,12 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
     }
   }
   $("#btnGen").onclick = () => generateVision();
+  $("#btnGenSheet").onclick = () => { closeSheets(); generateVision(); };
+  $("#smartChips").addEventListener("click", e => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    localStorage.setItem("mira-smart", c.dataset.v);
+    $$("#smartChips .chip").forEach(x => x.classList.toggle("on", x === c));
+  });
 
   /* series — coverage like a director, time like a producer */
   function detailFocus() {
@@ -2152,7 +2247,7 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
       cx.restore();
     }
   }
-  async function flatten(s) {
+  async function flatten(s, opts = {}) {
     const img = new Image();
     const url = s.imgUrl || URL.createObjectURL(s.blob);
     await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = url; });
@@ -2162,7 +2257,9 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
     cx.drawImage(img, 0, 0);
     if (!s.inkHidden) (s.strokes || []).forEach(st => strokePath(cx, st, c.width, c.height));
     await drawObjectsOn(cx, s, c.width, c.height);
-    drawTags(cx, s, c.width, c.height);
+    // voice-tag text never travels INSIDE the generation plate (models render it
+    // literally into the sky) — it goes as VOICE DIRECTION text in the prompt.
+    if (!opts.noTags) drawTags(cx, s, c.width, c.height);
     return new Promise(res => c.toBlob(b => res(b), "image/png"));
   }
   function download(blob, name) {
@@ -2219,6 +2316,19 @@ EVITAR: ${sy.avoid ? sy.avoid + " " : ""}Look CGI de plástico, sobresaturación
     i.onload = () => { res(i); setTimeout(() => URL.revokeObjectURL(u), 2000); };
     i.onerror = rej; i.src = u;
   });
+  $("#btnExpShare").onclick = async () => {
+    if (!cur) { toast("Abre una escena primero"); return; }
+    closeSheets();
+    const blob = (mode === "vision" && hasVision(cur))
+      ? cur.visions[cur.vIdx != null ? cur.vIdx : cur.visions.length - 1].blob
+      : await flatten(cur);
+    const file = new File([blob], "mira-vision.png", { type: blob.type || "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file] }); toast("📤 Compartida"); }
+      catch (err) { if (!err || err.name !== "AbortError") download(blob, "mira-vision.png"); }
+    } else download(blob, "mira-vision.png");
+  };
+
   $("#btnExpWa").onclick = async () => {
     if (!cur) { toast("Abre una escena primero"); return; }
     closeSheets();
