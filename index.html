@@ -79,6 +79,72 @@
   .btn.ghost { background: transparent; }
 
 
+
+  /* ---------- LA FUNCIÓN — live cinema cooking in front of you ---------- */
+  .funcion { position: fixed; inset: 0; z-index: 300; background: #0A0A0A; color: #F5F5F3; display: none; flex-direction: column; }
+  .funcion.open { display: flex; }
+  .fx-head { display: flex; align-items: center; gap: 12px; padding: calc(var(--sat) + 14px) 20px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .fx-title { font-weight: 900; letter-spacing: 0.22em; font-size: 14px; }
+  .fx-title b { color: #C9A84C; }
+  .fx-sub { font-family: "JetBrains Mono", monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); flex: 1; }
+  .fx-close { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.08); color: #fff; font-size: 15px; }
+  .fx-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 22px 22px calc(var(--sab) + 30px); }
+  .fx-setup { max-width: 660px; margin: 4vh auto 0; }
+  .fx-setup .fxk { font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: #C9A84C; margin-bottom: 10px; }
+  .fx-setup h1 { font-size: clamp(26px, 4.5vw, 38px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 8px; }
+  .fx-setup .fxs { color: rgba(255,255,255,0.55); font-size: 13.5px; margin-bottom: 18px; line-height: 1.55; }
+  .fx-setup textarea { width: 100%; min-height: 180px; background: #141414; border: 1px solid rgba(255,255,255,0.14); border-radius: 16px; padding: 16px; color: #F5F5F3; font-size: 14px; line-height: 1.6; outline: none; resize: vertical; }
+  .fx-setup textarea:focus { border-color: rgba(201,168,76,0.5); }
+  .fx-assets { display: flex; gap: 8px; margin: 14px 0 6px; flex-wrap: wrap; }
+  .fx-asset { width: 64px; height: 44px; border-radius: 8px; background: #1a1a1a center/cover; border: 1px solid rgba(255,255,255,0.12); }
+  .fx-asset.more { display: flex; align-items: center; justify-content: center; font-family: "JetBrains Mono", monospace; font-size: 9px; color: rgba(255,255,255,0.4); }
+  .fx-note { font-size: 11.5px; color: rgba(255,255,255,0.35); margin-bottom: 18px; }
+  .fx-go { width: 100%; padding: 18px; border-radius: 100px; background: #C9A84C; color: #131313; font-weight: 800; font-size: 16px; letter-spacing: 0.02em; box-shadow: 0 16px 50px rgba(201,168,76,0.3); transition: transform 0.25s var(--ease); }
+  .fx-go:active { transform: scale(0.97); }
+
+  .fx-status { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.14em; color: #C9A84C; text-align: center; margin: 6px 0 20px; min-height: 16px; }
+  .fx-logline { text-align: center; font-size: clamp(17px, 2.6vw, 24px); font-weight: 800; letter-spacing: -0.02em; max-width: 700px; margin: 0 auto 24px; text-wrap: balance; }
+  .fx-grid { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; max-width: 980px; margin: 0 auto; }
+  .fx-card { width: min(288px, 44vw); border-radius: 16px; overflow: hidden; background: #141414; border: 1px solid rgba(255,255,255,0.12); animation: fxland 0.7s var(--ease) backwards; box-shadow: 0 20px 50px rgba(0,0,0,0.55); }
+  @keyframes fxland { from { opacity: 0; transform: translateY(34px) scale(0.9) rotate(-1.5deg); } 60% { transform: translateY(-4px) scale(1.02) rotate(0.4deg); } to { opacity: 1; transform: none; } }
+  .fx-card .fim { position: relative; aspect-ratio: 16/10; background: #101010; overflow: hidden; }
+  .fx-card .fim img { width: 100%; height: 100%; object-fit: cover; display: block; animation: arrive 0.9s var(--ease); }
+  .fx-card .fim.cooking::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 38%, rgba(201,168,76,0.2) 47%, rgba(201,168,76,0.5) 50%, rgba(201,168,76,0.2) 53%, transparent 62%); background-size: 100% 260%; animation: scanY 2.2s cubic-bezier(0.45,0,0.55,1) infinite; }
+  .fx-card .fmeta { padding: 11px 13px 13px; }
+  .fx-card .fnum { font-family: "JetBrains Mono", monospace; font-size: 8.5px; letter-spacing: 0.2em; color: #C9A84C; }
+  .fx-card .fname { font-size: 13.5px; font-weight: 700; margin: 3px 0 5px; }
+  .fx-card .fnarr { font-size: 11.5px; color: rgba(255,255,255,0.55); line-height: 1.5; min-height: 30px; }
+  .fx-script { max-width: 660px; margin: 30px auto 0; background: #141414; border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 18px; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.8); white-space: pre-wrap; display: none; -webkit-user-select: text; user-select: text; }
+  .fx-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+  .fx-actions button { padding: 13px 22px; border-radius: 100px; font-size: 13.5px; font-weight: 700; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: #fff; }
+  .fx-actions button.gold { background: #C9A84C; color: #131313; border: none; }
+
+
+  .fx-head .fx-voz { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.08); color: #fff; font-size: 15px; }
+  .fx-head .fx-voz.on { background: rgba(201,168,76,0.25); color: #C9A84C; }
+  .fx-card .fretry { position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,0.55); color: #fff; font-size: 13px; display: none; z-index: 2; }
+  .fx-card .fim:hover .fretry, .fx-card .fim .fretry.show { display: flex; align-items: center; justify-content: center; }
+  .fx-light { position: fixed; inset: 0; z-index: 400; background: rgba(0,0,0,0.92); display: none; flex-direction: column; align-items: center; justify-content: center; padding: 4vh 4vw; }
+  .fx-light.open { display: flex; animation: arrive 0.5s var(--ease); }
+  .fx-light img { max-width: 94vw; max-height: 78vh; border-radius: 12px; box-shadow: 0 40px 120px rgba(0,0,0,0.8); }
+  .fx-light .ln { margin-top: 18px; color: rgba(255,255,255,0.85); font-size: clamp(14px, 2vw, 18px); text-align: center; max-width: 700px; line-height: 1.5; }
+  .fx-light .lk { font-family: "JetBrains Mono", monospace; font-size: 9px; letter-spacing: 0.22em; color: #C9A84C; margin-top: 10px; }
+  .fx-mic { position: absolute; right: 10px; bottom: 10px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); color: #fff; font-size: 16px; }
+  .fx-mic.rec { background: rgba(224,69,69,0.3); animation: pulse 1.2s infinite; }
+  .fx-prompt-wrap { position: relative; }
+
+
+  .fx-curtain { position: fixed; inset: 0; z-index: 350; background: #000; display: none; align-items: center; justify-content: center; flex-direction: column; gap: 14px; }
+  .fx-curtain.open { display: flex; animation: curtainIn 0.6s var(--ease); }
+  @keyframes curtainIn { from { opacity: 0; } }
+  .fx-curtain .ct { font-size: clamp(28px, 5vw, 52px); font-weight: 800; letter-spacing: -0.03em; color: #F5F5F3; text-align: center; padding: 0 8vw; text-wrap: balance; animation: arrive 1.1s var(--ease); }
+  .fx-curtain .cl { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #C9A84C; animation: arrive 1.4s var(--ease) backwards; animation-delay: 0.3s; }
+  .fx-fmt { display: flex; gap: 8px; margin: 0 0 12px; }
+  .fx-fmt button { padding: 10px 18px; border-radius: 100px; font-size: 13px; font-weight: 700; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); }
+  .fx-fmt button.on { background: #C9A84C; color: #131313; border-color: transparent; }
+  .fx-grid.vertical .fx-card { width: min(200px, 30vw); }
+  .fx-grid.vertical .fx-card .fim { aspect-ratio: 9/16; }
+
   /* ---------- HOME — the hall of projects ---------- */
   .home { position: fixed; inset: 0; z-index: 150; background: radial-gradient(1000px 500px at 50% 0%, rgba(176,138,46,0.06), transparent 60%), var(--black); display: none; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; }
   .home.open { display: flex; }
@@ -512,6 +578,7 @@
       <button class="vtab" data-view="board">Board</button>
     </div>
     <button class="btn ghost" id="btnSystems"><svg class="ic sm" viewBox="0 0 24 24"><path d="M12 3.5l8.5 8.5-8.5 8.5L3.5 12 12 3.5z"/></svg>Systems</button>
+    <button class="btn gold" id="btnFuncion" title="La Función">✦ Función</button>
     <button class="btn ghost" id="btnPresent" title="Presentar"><svg class="ic sm fill" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5z"/></svg></button>
     <button class="btn ghost" id="btnSettings" title="Ajustes"><svg class="ic sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.2 2.2M16.6 16.6l2.2 2.2M18.8 5.2l-2.2 2.2M7.4 16.6l-2.2 2.2"/></svg></button>
     <button class="btn" id="btnExport"><svg class="ic sm" viewBox="0 0 24 24"><path d="M12 3.5v11.5M7 10.5l5 5 5-5M4.5 20h15"/></svg>Exportar</button>
@@ -733,8 +800,8 @@
       </div>
     </div>
     <div class="hintline">Cambiar el tipo propone un recorrido nuevo — tus escenas no se borran, solo se re-acomodan.</div>
-    <div class="field"><label>El delta — tu invitado llega…</label><textarea id="prIn" placeholder="Escéptico, cansado de eventos iguales…"></textarea></div>
-    <div class="field"><label>✦ …y se tiene que ir</label><textarea id="prOut" placeholder="Sintiendo que perteneció a algo irrepetible…"></textarea></div>
+    <div class="field relwrap"><label>El delta — tu invitado llega…</label><textarea id="prIn" placeholder="Escéptico, cansado de eventos iguales…"></textarea><button class="micbtn dictate" data-for="prIn">🎙</button></div>
+    <div class="field relwrap"><label>✦ …y se tiene que ir</label><textarea id="prOut" placeholder="Sintiendo que perteneció a algo irrepetible…"></textarea><button class="micbtn dictate" data-for="prOut">🎙</button></div>
     <div class="field">
       <label>Las fases del recorrido — hora · nombre · emoción</label>
       <div id="phList"></div>
@@ -861,6 +928,55 @@
       <button class="btn danger" id="btnDelSys">Eliminar</button>
     </div>
   </div>
+</div>
+
+<!-- LA FUNCIÓN — live show -->
+<div class="funcion" id="funcion">
+  <div class="fx-head">
+    <div class="fx-title">LA <b>FUNCIÓN</b></div>
+    <div class="fx-sub" id="fxSub">cine en vivo · un prompt lo cocina todo</div>
+    <button class="fx-voz on" id="fxVoz" title="MIRA te narra">🔊</button>
+    <button class="fx-close" id="fxClose">✕</button>
+  </div>
+  <div class="fx-body">
+    <div class="fx-setup" id="fxSetup">
+      <div class="fxk">Un clic · El Director imagina, genera y acomoda</div>
+      <h1>El prompt supremo ya está puesto.</h1>
+      <div class="fxs">Tus escenas y tu board son la materia prima. El Director escribe el storyboard, cocina cada toma frente a ti, y teclea el guion. Edita el prompt si quieres — o solo dale.</div>
+      <div class="fx-assets" id="fxAssets"></div>
+      <div class="fx-fmt" id="fxFmt">
+        <button class="on" data-a="16:9">🎬 16:9 Cine</button>
+        <button data-a="9:16">📱 9:16 Short</button>
+      </div>
+      <div class="fx-prompt-wrap">
+        <textarea id="fxPrompt"></textarea>
+        <button class="fx-mic" id="fxMic" title="Dictar">🎙</button>
+      </div>
+      <div class="fx-note">Costo aprox: ~$0.25 USD por función de 5 tomas (imágenes). El video de cada toma se lleva a Higgsfield con los prompts que te exporto.</div>
+      <button class="fx-go" id="fxGo">✦ INICIAR LA FUNCIÓN</button>
+    </div>
+    <div id="fxShow" style="display:none;">
+      <div class="fx-status" id="fxStatus"></div>
+      <div class="fx-logline" id="fxLogline"></div>
+      <div class="fx-grid" id="fxGrid"></div>
+      <div class="fx-script" id="fxScript"></div>
+      <div class="fx-actions" id="fxActions" style="display:none;">
+        <button class="gold" id="fxSave">Guardar tomas en el proyecto</button>
+        <button id="fxExport">Exportar guion + prompts de video</button>
+        <button id="fxPiece">🎞 Exportar pieza (HTML)</button>
+        <button id="fxAgain">↻ Otra función</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fx-curtain" id="fxCurtain"><div class="ct" id="fxCurtainT"></div><div class="cl">UNA FUNCIÓN DE MIRA</div></div>
+
+<!-- Función lightbox -->
+<div class="fx-light" id="fxLight">
+  <img id="fxLightImg" alt="" />
+  <div class="ln" id="fxLightN"></div>
+  <div class="lk">TOCA PARA CERRAR</div>
 </div>
 
 <!-- HOME — hall of projects -->
@@ -2250,6 +2366,365 @@ Dictation: ${transcript.trim()}` }] }] })
     }
     renderBoard();
     toast(`<b>${files.length}</b> referencia(s) al board — viajarán en cada generación`);
+  };
+
+  /* ---------- MIRA habla — voice layer v1 ---------- */
+  let vozOn = localStorage.getItem("mira-voz") !== "0";
+  function vozSay(text) {
+    if (!vozOn || !("speechSynthesis" in window) || !text) return;
+    try {
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "es-MX";
+      const voices = speechSynthesis.getVoices();
+      const v = voices.find(x => /es[-_]MX/i.test(x.lang)) || voices.find(x => /^es/i.test(x.lang));
+      if (v) u.voice = v;
+      u.rate = 1.02; u.pitch = 1.0;
+      speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  $("#fxVoz").classList.toggle("on", vozOn);
+  $("#fxVoz").textContent = vozOn ? "🔊" : "🔇";
+  $("#fxVoz").onclick = () => {
+    vozOn = !vozOn;
+    localStorage.setItem("mira-voz", vozOn ? "1" : "0");
+    $("#fxVoz").classList.toggle("on", vozOn);
+    $("#fxVoz").textContent = vozOn ? "🔊" : "🔇";
+    if (!vozOn) try { speechSynthesis.cancel(); } catch (e) {}
+    toast(vozOn ? "🔊 MIRA te <b>narra</b> la función" : "🔇 Narración apagada");
+  };
+
+  /* generic dictation into any field */
+  let dictRec = null;
+  function dictateInto(el, btn) {
+    if (!SR) { toast("Dictado no disponible — usa el 🎙 del teclado"); return; }
+    if (dictRec) { try { dictRec.stop(); } catch (e) {} return; }
+    dictRec = new SR();
+    dictRec.lang = "es-MX"; dictRec.continuous = true; dictRec.interimResults = false;
+    btn.classList.add("rec");
+    dictRec.onresult = e => {
+      const t = [...e.results].slice(e.resultIndex).map(r => r[0].transcript).join(" ").trim();
+      el.value = (el.value ? el.value.trim() + " " : "") + t;
+      el.dispatchEvent(new Event("input"));
+    };
+    dictRec.onend = () => { btn.classList.remove("rec"); dictRec = null; };
+    dictRec.onerror = () => { btn.classList.remove("rec"); dictRec = null; };
+    try { dictRec.start(); } catch (e) { dictRec = null; }
+  }
+  $("#fxMic").onclick = e => dictateInto($("#fxPrompt"), e.currentTarget);
+  $$(".micbtn.dictate").forEach(b => b.onclick = () => dictateInto($("#" + b.dataset.for), b));
+
+  /* lightbox */
+  const fxLight = $("#fxLight");
+  function fxZoom(url, narr) {
+    $("#fxLightImg").src = url;
+    $("#fxLightN").textContent = narr || "";
+    fxLight.classList.add("open");
+  }
+  fxLight.onclick = () => fxLight.classList.remove("open");
+
+  /* ---------- LA FUNCIÓN — one prompt cooks the whole piece, live ---------- */
+  const FX_DEFAULT = `Director: vas a filmar una sola transformación: el frío del Stanley rosa cuarzo se vuelve criatura. Del vapor helado nace un oso pardo con lomo y cuartos traseros de hielo glaciar —el turnaround de 4 vistas es tu única verdad del personaje— que nace miniatura y termina colosal bajo el cielo de CDMX. Materia prima obligatoria: la foto del Stanley sobre la mesa de madera, la toma abierta del comedor cálido y el cielo nublado desde la terraza. No inventes locaciones.
+
+LOOK: noche íntima mexicana. Tungsteno ámbar sobre madera; el único frío —cian glaciar— emana del termo, la escarcha y el oso. Paleta: rosa cuarzo, ámbar, azul hielo. Lente cine 35–50mm, f/1.8, halation suave, grano fino, dollies lentos. Tono: asombro silencioso, premium.
+
+Cinco planos, arco hook → build → reveal → peak → close:
+(1) HOOK — macro del termo sudando frío; en su reflejo mate, una silueta de oso respira antes de existir; la escarcha repta por la madera.
+(2) BUILD — del vapor se materializa el oso miniatura; su hielo refracta la luz ámbar; olfatea el Stanley, más grande que él.
+(3) REVEAL — plano abierto del comedor: ya del tamaño de un perro, baja de la mesa dejando huellas de escarcha en la casa intacta.
+(4) PEAK — contrapicado en la terraza: el oso cruza el umbral y se vuelve colosal; el cielo nublado se agrieta con una veta de luz cian glaciar.
+(5) CLOSE — el termo quieto; la escarcha se retira hasta una sola huella de condensación; afuera, la silueta colosal vela la ciudad.
+
+PROHIBIDO: texto o logos generados (solo la etiqueta real), termo deformado, mobiliario de evento.`;
+
+  const fxEl = $("#funcion");
+  let fxAspect = "16:9";
+  $("#fxFmt").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    fxAspect = b.dataset.a;
+    $$("#fxFmt button").forEach(x => x.classList.toggle("on", x === b));
+  });
+  let fxShots = [];   // {name, narration, imagePrompt, motionPrompt, blob, url}
+  let fxMeta = null;  // {title, logline}
+  let fxRunning = false;
+
+  function fxOpen() {
+    if (!project.supremePrompt && project.type === "cine") project.supremePrompt = FX_DEFAULT;
+    $("#fxPrompt").value = project.supremePrompt || FX_DEFAULT;
+    // asset strip: plates + board refs
+    const box = $("#fxAssets");
+    box.innerHTML = "";
+    projScenes().slice(0, 4).forEach(sc => {
+      const d = document.createElement("div");
+      d.className = "fx-asset";
+      if (sc.thumbUrl) d.style.backgroundImage = `url(${sc.thumbUrl})`;
+      box.appendChild(d);
+    });
+    projBoard().slice(0, 3).forEach(b => {
+      const d = document.createElement("div");
+      d.className = "fx-asset";
+      d.style.backgroundImage = `url(${b.url})`;
+      box.appendChild(d);
+    });
+    if (!box.children.length) {
+      const d = document.createElement("div");
+      d.className = "fx-asset more";
+      d.textContent = "SIN ASSETS";
+      box.appendChild(d);
+    }
+    $("#fxSetup").style.display = "";
+    $("#fxShow").style.display = "none";
+    fxEl.classList.add("open");
+  }
+  $("#btnFuncion").onclick = fxOpen;
+  $("#fxClose").onclick = () => { fxEl.classList.remove("open"); };
+
+  async function fxGatherParts() {
+    const parts = [];
+    const plateMap = [];
+    for (const sc of projScenes().slice(0, 3)) {
+      parts.push({ inline_data: { mime_type: "image/jpeg", data: await blobToB64(await downscale(sc.blob, 1024)) } });
+      plateMap.push(sc.id);
+    }
+    const refs = projBoard().slice(0, 3);
+    for (const r of refs) {
+      parts.push({ inline_data: { mime_type: "image/jpeg", data: await blobToB64(await downscale(r.blob, 768)) } });
+    }
+    return { parts, plateCount: plateMap.length, refCount: refs.length, plateMap };
+  }
+
+  async function fxStoryboard(key, prompt) {
+    const g = await fxGatherParts();
+    const instruction =
+`You are El Director. The creator wrote a "supreme prompt" (Spanish) for a cinematic content piece. You received ${g.plateCount} REAL PLATE photo(s) (the first ${g.plateCount} image(s)) and ${g.refCount} STYLE/CHARACTER reference(s) (the following image(s)).
+Design the storyboard: exactly 5 shots with a narrative arc (hook → build → reveal → peak → close).
+For each shot decide its base: "plate:0".."plate:${Math.max(0, g.plateCount - 1)}" (edit that real photo) or "imagine" (generate from imagination + references).
+Return ONLY minified JSON, no markdown fences:
+{"title":"short title ES","logline":"1 line ES","shots":[{"name":"2-4 words ES","base":"plate:N|imagine","imagePrompt":"English image-editing/generation prompt, <120 words, photorealistic cinematic, product never distorted, no rendered text/logos","motionPrompt":"English Seedance motion-only prompt <60 words (camera verbs + subject motion; do NOT redescribe the frame)","narration":"1 line ES for voiceover"}]}
+
+SUPREME PROMPT:
+${prompt}`;
+    const res = await fetch(GEMINI_TEXT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+      body: JSON.stringify({ contents: [{ parts: [...g.parts, { text: instruction }] }] })
+    });
+    if (!res.ok) throw new Error("Director HTTP " + res.status);
+    const j = await res.json();
+    let txt = (j.candidates?.[0]?.content?.parts || []).map(x => x.text || "").join("");
+    txt = txt.replace(/```json|```/g, "").trim();
+    const sb = JSON.parse(txt.slice(txt.indexOf("{"), txt.lastIndexOf("}") + 1));
+    if (!Array.isArray(sb.shots) || !sb.shots.length) throw new Error("storyboard vacío");
+    sb.shots = sb.shots.slice(0, 6);
+    return { sb, g };
+  }
+
+  async function fxGenShot(key, shot, g) {
+    const parts = [];
+    const m = /^plate:(\d+)/.exec(shot.base || "");
+    if (m && +m[1] < g.plateCount) {
+      parts.push(g.parts[+m[1]]);
+      for (let i = g.plateCount; i < g.parts.length; i++) parts.push(g.parts[i]);
+      parts.push({ text:
+`Edit the FIRST image (locked plate: real architecture/geometry keeps exact position; camera identical). The other image(s) are style/character references — inherit their look, do not copy their background.
+${shot.imagePrompt}
+ABSOLUTE: photorealistic cinematic frame; never render text, lettering or logos; the real product's own label may remain exactly as photographed.` });
+    } else {
+      for (let i = g.plateCount; i < g.parts.length; i++) parts.push(g.parts[i]);
+      parts.push({ text:
+`Generate a photorealistic cinematic frame. The attached image(s) are style/character references — match their look and character exactly.
+${shot.imagePrompt}
+ABSOLUTE: never render text, lettering or logos.` });
+    }
+    let res = await fetch(GEMINI_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+      body: JSON.stringify({
+        contents: [{ parts }],
+        generationConfig: { responseModalities: ["TEXT", "IMAGE"], imageConfig: { aspectRatio: fxAspect } }
+      })
+    });
+    if (res.status === 429) {                    // rate limit: breathe and retry once
+      await new Promise(r => setTimeout(r, 9000));
+      res = await fetch(GEMINI_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+        body: JSON.stringify({
+          contents: [{ parts }],
+          generationConfig: { responseModalities: ["TEXT", "IMAGE"], imageConfig: { aspectRatio: fxAspect } }
+        })
+      });
+    }
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const j = await res.json();
+    const part = (j.candidates?.[0]?.content?.parts || []).find(x => x.inlineData && x.inlineData.data);
+    if (!part) throw new Error("sin imagen (" + (j.candidates?.[0]?.finishReason || "?") + ")");
+    return b64ToBlob(part.inlineData.data, part.inlineData.mimeType);
+  }
+
+  function fxCard(i, shot) {
+    const el = document.createElement("div");
+    el.className = "fx-card";
+    el.style.animationDelay = "0ms";
+    el.innerHTML = `<div class="fim cooking" id="fim-${i}"></div>
+      <div class="fmeta"><div class="fnum">TOMA ${i + 1} · ${shot.base && shot.base.startsWith("plate") ? "PLATE REAL" : "IMAGINADA"}</div>
+      <div class="fname">${esc(shot.name || "")}</div><div class="fnarr" id="fnarr-${i}"></div></div>`;
+    return el;
+  }
+  function fxType(el, text, speed = 18) {
+    let i = 0;
+    const t = setInterval(() => {
+      i += 2;
+      el.textContent = text.slice(0, i);
+      if (i >= text.length) clearInterval(t);
+    }, speed);
+  }
+
+  async function fxCook(key, rec, g, i) {
+    const fim = $("#fim-" + i);
+    fim.classList.add("cooking");
+    fim.innerHTML = "";
+    try {
+      const blob = await fxGenShot(key, rec, g);
+      rec.blob = blob;
+      if (rec.url) URL.revokeObjectURL(rec.url);
+      rec.url = URL.createObjectURL(blob);
+      fim.classList.remove("cooking");
+      fim.innerHTML = `<img src="${rec.url}" alt="" /><button class="fretry show" title="Regenerar">↻</button>`;
+      fim.querySelector("img").onclick = () => fxZoom(rec.url, rec.narration);
+    } catch (e) {
+      fim.classList.remove("cooking");
+      fim.innerHTML = `<div style="display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,.4);font-size:11px;">⚠️ ${esc(String(e.message || e))}<button class="fretry show" style="position:static;">↻ Reintentar</button></div>`;
+    }
+    fim.querySelector(".fretry").onclick = ev => { ev.stopPropagation(); fxCook(key, rec, g, i); };
+  }
+  async function fxRun() {
+    if (fxRunning) return;
+    const key = (localStorage.getItem("mira-gemini-key") || "").trim();
+    if (!key) { fxEl.classList.remove("open"); openSettings(); toast("Pega tu API key para La Función"); return; }
+    fxRunning = true;
+    project.supremePrompt = $("#fxPrompt").value.trim();
+    saveProject();
+    $("#fxSetup").style.display = "none";
+    $("#fxShow").style.display = "";
+    const grid = $("#fxGrid"), status = $("#fxStatus");
+    grid.innerHTML = ""; $("#fxScript").style.display = "none"; $("#fxActions").style.display = "none";
+    $("#fxLogline").textContent = "";
+    fxShots = []; fxMeta = null;
+    try {
+      status.textContent = "🧠 EL DIRECTOR ESTÁ ESCRIBIENDO EL STORYBOARD…";
+      vozSay("El Director está escribiendo tu storyboard.");
+      const { sb, g } = await fxStoryboard(key, project.supremePrompt || FX_DEFAULT);
+      fxMeta = { title: sb.title || "La Función", logline: sb.logline || "" };
+      grid.classList.toggle("vertical", fxAspect === "9:16");
+      $("#fxCurtainT").textContent = `«${fxMeta.title}»`;
+      $("#fxCurtain").classList.add("open");
+      vozSay(fxMeta.title);
+      await new Promise(r => setTimeout(r, 2600));
+      $("#fxCurtain").classList.remove("open");
+      $("#fxLogline").textContent = `«${fxMeta.title}» — ${fxMeta.logline}`;
+      for (let i = 0; i < sb.shots.length; i++) {
+        const shot = sb.shots[i];
+        const card = fxCard(i, shot);
+        grid.appendChild(card);
+        card.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        status.textContent = `🎬 COCINANDO TOMA ${i + 1}/${sb.shots.length} — «${(shot.name || "").toUpperCase()}»`;
+        fxType($("#fnarr-" + i), shot.narration || "");
+        vozSay(shot.narration || "");
+        const rec = { ...shot, blob: null, url: null };
+        fxShots.push(rec);
+        await fxCook(key, rec, g, i);
+        if (i < sb.shots.length - 1) await new Promise(r => setTimeout(r, 1200));
+      }
+      status.textContent = "✦ FUNCIÓN COMPLETA";
+      vozSay(`Función completa. ${fxMeta.title}.`);
+      const script = sb.shots.map((sh, i) => `TOMA ${i + 1} — ${sh.name}\n${sh.narration}`).join("\n\n");
+      const scriptEl = $("#fxScript");
+      scriptEl.style.display = "block";
+      fxType(scriptEl, `«${fxMeta.title}»\n\n${script}`, 10);
+      project.script = script;
+      saveProject();
+      $("#fxActions").style.display = "flex";
+    } catch (e) {
+      status.textContent = "⚠️ " + String(e.message || e);
+      $("#fxActions").style.display = "flex";
+    } finally {
+      fxRunning = false;
+    }
+  }
+  $("#fxGo").onclick = fxRun;
+  $("#fxAgain").onclick = fxOpen;
+
+  $("#fxSave").onclick = async () => {
+    const good = fxShots.filter(x => x.blob);
+    if (!good.length) { toast("No hay tomas que guardar"); return; }
+    for (let i = 0; i < good.length; i++) {
+      const ph = project.phases[Math.min(i, project.phases.length - 1)];
+      const sc = {
+        id: uid(), order: Date.now() + i, createdAt: Date.now(),
+        blob: good[i].blob, strokes: [], notes: good[i].narration || "", visions: [{ blob: good[i].blob, at: Date.now(), tag: "FUNCIÓN" }],
+        objects: [], voiceTags: [], systemId: (projScenes()[0] || {}).systemId || systems[0].id,
+        shot: "wide establishing shot", time: "night, event in full swing",
+        fmt: "image", aspect: "16:9", cam: "slow cinematic dolly-in",
+        phaseId: ph ? ph.id : heroPhaseId(), projectId: project.id
+      };
+      sc.thumbUrl = URL.createObjectURL(sc.blob);
+      scenes.push(sc);
+      await persist(sc);
+    }
+    fxEl.classList.remove("open");
+    renderStrip();
+    toast(`✦ <b>${good.length} tomas</b> guardadas en el recorrido`);
+  };
+
+  $("#fxPiece").onclick = async () => {
+    const good = fxShots.filter(x => x.blob);
+    if (!good.length) { toast("No hay tomas"); return; }
+    toast("🎞 Armando tu pieza…");
+    const imgs = [];
+    for (const sh of good) imgs.push(await blobToDataUrl(sh.blob));
+    const vertical = fxAspect === "9:16";
+    const piece = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>${esc(fxMeta ? fxMeta.title : "MIRA")}</title><style>
+* { margin:0; box-sizing:border-box; } body { background:#000; color:#F5F5F3; font-family:-apple-system,'Helvetica Neue',sans-serif; overflow:hidden; height:100vh; }
+.sl { position:absolute; inset:0; display:none; align-items:center; justify-content:center; }
+.sl.on { display:flex; animation: fade 1.1s ease; } @keyframes fade { from { opacity:0; transform:scale(1.02); } }
+.sl img { ${vertical ? "height:100vh; max-width:100vw;" : "width:100vw; max-height:100vh;"} object-fit:contain; }
+.cap { position:absolute; left:0; right:0; bottom:7vh; text-align:center; padding:0 8vw; font-size:clamp(15px,2.4vw,22px); text-shadow:0 2px 14px rgba(0,0,0,.9); font-weight:600; }
+.k { position:absolute; top:24px; left:0; right:0; text-align:center; font-family:ui-monospace,Menlo,monospace; font-size:9px; letter-spacing:.28em; color:rgba(201,168,76,.9); }
+.title { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; background:#000; z-index:5; transition: opacity 1s; }
+.title h1 { font-size:clamp(30px,6vw,60px); font-weight:800; letter-spacing:-.03em; text-align:center; padding:0 8vw; }
+.title .l { font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.3em; color:#C9A84C; }
+</style></head><body>
+<div class="k">UNA FUNCIÓN DE MIRA · TOCA PARA AVANZAR</div>
+<div class="title" id="t"><h1>${esc(fxMeta ? fxMeta.title : "")}</h1><div class="l">${esc(fxMeta ? fxMeta.logline : "")}</div></div>
+${good.map((sh, i) => `<div class="sl" data-i="${i}"><img src="${imgs[i]}"/><div class="cap">${esc(sh.narration || "")}</div></div>`).join("")}
+<script>
+var i=-1, sls=document.querySelectorAll('.sl'), t=document.getElementById('t');
+function go(){ if(i===-1){ t.style.opacity=0; setTimeout(function(){t.style.display='none';},1000);} i=(i+1)%sls.length; sls.forEach(function(s,j){s.classList.toggle('on',j===i);}); }
+document.body.addEventListener('click',go);
+setTimeout(go, 2800); setInterval(function(){ /* auto-advance */ if(document.hidden)return; }, 1e9);
+var auto=setInterval(go, 5200);
+document.body.addEventListener('click',function(){ clearInterval(auto); });
+<\/script></body></html>`;
+    download(new Blob([piece], { type: "text/html" }), `mira-pieza-${slugify(fxMeta ? fxMeta.title : "funcion")}.html`);
+    toast("🎞 Pieza <b>exportada</b> — ábrela y se reproduce sola");
+  };
+
+  $("#fxExport").onclick = () => {
+    if (!fxShots.length) return;
+    const md = [`# ${fxMeta ? fxMeta.title : "La Función"}`, fxMeta ? `_${fxMeta.logline}_` : "", ""];
+    fxShots.forEach((sh, i) => {
+      md.push(`## TOMA ${i + 1} — ${sh.name}`,
+        `**Narración:** ${sh.narration}`,
+        `**Imagen:** ${sh.imagePrompt}`,
+        `**Video (Seedance 2.0):**`,
+        "```bash",
+        `higgsfield generate create seedance_2_0 --start-image ./toma-${i + 1}.png --prompt "${(sh.motionPrompt || "").replace(/"/g, "'")}" --duration 8 --resolution 1080p --aspect_ratio ${fxAspect} --wait`,
+        "```", "");
+    });
+    download(new Blob([md.join("\n")], { type: "text/markdown" }), "mira-funcion.md");
+    fxShots.filter(x => x.blob).forEach((sh, i) => setTimeout(() => download(sh.blob, `toma-${i + 1}.png`), 400 * (i + 1)));
+    toast("📦 Guion + prompts + tomas <b>exportados</b>");
   };
 
   /* ---------- El guion — the piece's script, typed like it's cooking ---------- */
